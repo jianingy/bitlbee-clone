@@ -504,6 +504,40 @@ static void cmd_account( irc_t *irc, char **cmd )
 		
 		g_free( acc_handle );
 	}
+	else if( g_strcasecmp( cmd[1], "status" ) == 0 )
+	{
+		if( cmd[4] )
+		{
+			if( ( a = account_get( irc, cmd[1] ) ) )
+			{
+				if( a->ic )
+				{
+					if( a->prpl && a->prpl->set_away )
+						a->prpl->set_away( a->ic, cmd[3], cmd[4] );
+				}
+				else
+				{
+					irc_usermsg( irc, "Account offline" );
+				}
+			}
+			else
+			{
+				irc_usermsg( irc, "Invalid account" );
+			}
+		}
+		else
+		{
+			if ( irc->accounts ) {
+				for( a = irc->accounts; a; a = a->next )
+					if( a->ic && a->prpl && a->prpl->set_away )
+						a->prpl->set_away( a->ic, cmd[2], cmd[3] );
+			}
+			else
+			{
+				irc_usermsg( irc, "No accounts known. Use 'account add' to add one." );
+			}
+		}
+	}
 	else
 	{
 		irc_usermsg( irc, "Unknown command: account %s. Please use \x02help commands\x02 to get a list of available commands.", cmd[1] );

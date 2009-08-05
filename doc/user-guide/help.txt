@@ -196,6 +196,18 @@ For more infomation about a setting, see help set <setting>. For details about
 
 The account ID can be a number (see account list), the protocol name or (part of) the screenname, as long as it matches only one connection.
 %
+?account status
+Syntax: account status <account id> <status> <message>
+Syntax: account status <status> <message>
+
+Sets account's status to <status> and status message to <message>. If <account id> is ommited will change status on all accounts.
+
+The account ID can be a number (see account list), the protocol name or (part of) the screenname, as long as it matches only one connection.
+
+<wilmer> account status online "I'm here."
+<wilmer> account status 1 xa "Sleeping."
+<wilmer> account status dnd "Only urgent stuff, I'm bussy!"
+%
 ?add
 Syntax: add <connection> <handle> [<nick>]
 Syntax: add -tmp <connection> <handle> [<nick>]

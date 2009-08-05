@@ -149,6 +149,27 @@
 				</para>
 			</description>
 		</bitlbee-command>
+
+		<bitlbee-command name="status">
+			<syntax>account status &lt;account id&gt; &lt;status&gt; &lt;message&gt;</syntax>
+			<syntax>account status &lt;status&gt; &lt;message&gt;</syntax>
+
+			<description>
+				<para>
+					Sets account's status to &lt;status&gt; and status message to &lt;message&gt;.  If &lt;account id&gt; is ommited will change status on all accounts.
+				</para>
+
+				<para>
+					The account ID can be a number (see <emphasis>account list</emphasis>), the protocol name or (part of) the screenname, as long as it matches only one connection.
+				</para>
+
+				<ircexample>
+					<ircline nick="wilmer">account status online "I'm here."</ircline>
+					<ircline nick="wilmer">account status 1 xa "Sleeping."</ircline>
+					<ircline nick="wilmer">account status dnd "Only urgent stuff, I'm bussy!"</ircline>
+				</ircexample>
+			</description>
+		</bitlbee-command>
 	</bitlbee-command>
 
 	<bitlbee-command name="add">

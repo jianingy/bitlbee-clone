@@ -376,11 +376,12 @@ static void jabber_get_info( struct im_connection *ic, char *who )
 static void jabber_set_away( struct im_connection *ic, char *state_txt, char *message )
 {
 	struct jabber_data *jd = ic->proto_data;
-	struct jabber_away_state *state;
+	const struct jabber_away_state *state;
 	
 	/* Save all this info. We need it, for example, when changing the priority setting. */
-	state = (void *) jabber_away_state_by_name( state_txt );
-	jd->away_state = state ? state : (void *) jabber_away_state_list; /* Fall back to "Away" if necessary. */
+	state = jabber_away_state_by_name( state_txt );
+	if( !state ) state = jabber_away_state_by_code( state_txt );
+	jd->away_state = (void*) (state ? state : jabber_away_state_list); /* Fall back to "Away" if necessary. */
 	g_free( jd->away_message );
 	jd->away_message = ( message && *message ) ? g_strdup( message ) : NULL;
 	

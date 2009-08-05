@@ -1983,11 +1983,14 @@ static void oscar_set_away_icq(struct im_connection *ic, struct oscar_data *od, 
 		aim_setextstatus(od->sess, od->conn, AIM_ICQ_STATE_AWAY);
         ic->away = g_strdup(msg);
 		od->sess->aim_icq_state = AIM_MTYPE_AUTOAWAY;
-	} else if (!g_strcasecmp(state, "Do Not Disturb")) {
+	} else if (!g_strcasecmp(state, "Do Not Disturb")
+			   || !g_strcasecmp(state, "dnd")) {
 		aim_setextstatus(od->sess, od->conn, AIM_ICQ_STATE_AWAY | AIM_ICQ_STATE_DND | AIM_ICQ_STATE_BUSY);
         ic->away = g_strdup(msg);
 		od->sess->aim_icq_state = AIM_MTYPE_AUTODND;
-	} else if (!g_strcasecmp(state, "Not Available")) {
+	} else if (!g_strcasecmp(state, "Not Available")
+			   || !g_strcasecmp(state, "Extended Away")
+			   || !g_strcasecmp(state, "xa")) {
 		aim_setextstatus(od->sess, od->conn, AIM_ICQ_STATE_OUT | AIM_ICQ_STATE_AWAY);
         ic->away = g_strdup(msg);
 		od->sess->aim_icq_state = AIM_MTYPE_AUTONA;
