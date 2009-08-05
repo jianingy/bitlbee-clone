@@ -119,6 +119,7 @@ If you're still looking for something, please visit us in #bitlbee on the OFTC n
  * identify - Identify yourself with your password
  * drop - Drop your account
  * blist - List all the buddies in your contact list
+ * nick_find - Display nickname by buddy's given email address
  * nick - Change friendly name, nick
  * join_chat - Join a named groupchat/conference room
 %
@@ -332,6 +333,13 @@ Drop your BitlBee registration. Your account files will be removed and your pass
 Syntax: blist [all|online|offline|away]
 
 You can get a better readable buddy list using the blist command. If you want a complete list (including the offline users) you can use the all argument.
+%
+?nick_find
+Syntax: nick_find <email>
+
+Example:
+<wouter> nick_find bitlbee@live.com
+<root> nickname = bitlbee
 %
 ?nick
 Syntax: nick <connection> [<new nick>]

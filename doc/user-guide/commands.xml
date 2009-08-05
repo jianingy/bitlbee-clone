@@ -857,6 +857,17 @@
 
 	</bitlbee-command>
 
+	<bitlbee-command name="nick_find">
+		<syntax>nick_find &lt;email&gt;</syntax>
+		<short-description>Display nickname by buddy's given email address</short-description>
+
+		<ircexample>
+			<ircline nick="wouter">nick_find bitlbee@live.com</ircline>
+			<ircline nick="root">nickname = bitlbee</ircline>
+		</ircexample>
+
+	</bitlbee-command>
+
 	<bitlbee-command name="nick">
 		<short-description>Change friendly name, nick</short-description>
 		<syntax>nick &lt;connection&gt; [&lt;new nick&gt;]</syntax>

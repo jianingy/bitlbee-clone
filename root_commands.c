@@ -990,6 +990,22 @@ static void cmd_blist( irc_t *irc, char **cmd )
 	irc_usermsg( irc, "%d buddies (%d available, %d away, %d offline)", n_online + n_away + n_offline, n_online, n_away, n_offline );
 }
 
+static void cmd_nick_find( irc_t *irc, char **cmd )
+{
+	user_t *u;
+	char s[256];
+
+	for( u = irc->users; u; u = u->next ) 
+	{
+		g_snprintf(s, sizeof( s ) - 1, "%s@%s", u->user, u->host);
+		if( u->ic && g_strcasecmp( cmd[1], s ) == 0 ) {
+			irc_usermsg( irc, "nickname = %s", u->nick );
+			return;
+		}
+	}
+	irc_usermsg( irc, "nick: ");
+}
+
 static void cmd_nick( irc_t *irc, char **cmd ) 
 {
 	account_t *a;
@@ -1127,6 +1143,7 @@ const command_t commands[] = {
 	{ "yes",            0, cmd_yesno,          0 },
 	{ "no",             0, cmd_yesno,          0 },
 	{ "blist",          0, cmd_blist,          0 },
+	{ "nick_find",      1, cmd_nick_find,      0 },
 	{ "nick",           1, cmd_nick,           0 },
 	{ "qlist",          0, cmd_qlist,          0 },
 	{ "join_chat",      2, cmd_join_chat,      0 },
